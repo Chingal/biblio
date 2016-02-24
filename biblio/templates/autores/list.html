@@ -1,0 +1,23 @@
+
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}
+Reportar Autor
+{% endblock title %}
+
+{% block h1 %}
+Listar todos los Autor
+{% endblock h1 %}
+
+
+	
+{% endif %}
+{% block content %}
+	{% for a in autores %}
+		<li>Nombre: {{a.nombre}} </li>
+		<li>País: {{a.pais}} </li>
+		<li>Descrición: {{a.descripcion}} </li>
+		<li>Img: <img src="{{ MEDIA_URL }}{{a.foto}} " alt=""> </li>
+	{% endfor %}
+{% endblock content %}

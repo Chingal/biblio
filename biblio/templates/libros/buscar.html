@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}
+	Buscar
+{% endblock title %}
+
+{% block h1 %}
+	Buscar
+{% endblock h1 %}
+
+{% block content %}
+	{% if esAutor %}
+		{% for a in autores %}
+			<p>Nombre Autor: {{a.nombre}}</p>		    
+		{% endfor %}
+	{% else %}
+		{% for d in  datos %}
+			{% for libro,autor in d.items %}
+				<p>Nombre Libro: {{libro.nombre}}</p>
+				<p>Autor/es:</p>
+				<ul>
+				{% for a in autor %}
+					<li>{{a.nombre}}</li>
+				{% endfor %}
+				</ul>				
+			{% endfor %}
+		{% endfor %}
+	{% endif %}
+{% endblock content %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}
+Busqueda
+{% endblock title %}
+
+{% block h1 %}
+Busqueda
+{% endblock h1 %}
+
+{% block content %}
+<select name="autores">
+	<option value="">Elige un autor: </option>
+	{% for a in autores %}
+		<option value=" {{a.id}} ">{{a.nombre}}</option>		
+	{% endfor %}
+</select>
+<div id="datos">
+    
+</div>
+{% endblock content %}
+
+{% block js %}
+<script type="text/javascript">
+	$("select").on('change', inicio);
+
+	// ===== FUNCIONES ====
+	function inicio () {
+		var id = $(this).val();
+		console.log(id);
+		$.ajax({
+			data: {'id': id},
+			url: '{% url 'busqueda_ajax' %}',
+			type: 'get',
+			success: function (data) {
+				console.log(data);
+				var html = "";
+				for (var i = 0; i < data.length; i++) {
+					html += "<ul><li>Nombre: " + data[i].fields.nombre + "</li><li>Resumen: "+ data[i].fields.resumen +"</li></ul>"
+				};
+				$('#datos').html(html);
+			}
+		});
+	}
+</script>
+{% endblock js %}

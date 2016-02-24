@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}
+Registrarse
+{% endblock title %}
+
+{% block h1 %}
+Registrarse
+{% endblock h1 %}
+
+{% block content %}
+<form action="" method="POST" accept-charset="utf-8" > {% csrf_token %}
+	{{form.as_p}}
+	<input type="submit" name="" value="Registrarse">
+</form>
+{% endblock content %}
